@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +24,9 @@ SECRET_KEY = 'django-insecure-b_t^gac7vz+lta*1_v&v4$71+z*)%1e_6agtaj8mzm=4f91fw=
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+
+# ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = ["djangopostgres-production.up.railway.app",]
 
@@ -77,20 +78,13 @@ WSGI_APPLICATION = 'django_postgres_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
